@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.color-gradient-header {
+    background: linear-gradient(180deg, rgba(28,84,145,1) 65%, rgba(255,148,0,1) 100%)
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

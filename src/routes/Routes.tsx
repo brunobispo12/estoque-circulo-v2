@@ -3,6 +3,7 @@ import Home from '../pages/home/Home'
 import Login from '../pages/login/Login'
 import Items from '../pages/items/Items'
 import NotFound from '../pages/notfound/NotFound'
+import Layout from '../layout'
 import { useRoutes } from "react-router-dom"
 
 const routes = [
@@ -12,11 +13,11 @@ const routes = [
         children: [
             {
                 path: '/home',
-                element: <Home />
+                element: <Layout><Home /></Layout>
             },
             {
                 path: '/items',
-                element: <Items />
+                element: <Layout><Items /></Layout>
             }
         ],
     },
