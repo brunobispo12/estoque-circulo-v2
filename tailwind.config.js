@@ -3,8 +3,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        smoke: '#F4F4F4',
-        raisin: '#23232A'
+        smoke: '#EEF0F2',
+        raisin: '#23232A',
+        princeton: '#FF9400',
+      },
+      fontFamily: {
+        'satoshi-regular': ['satoshi-regular'],
+        'satoshi-bold': ['satoshi-bold'],
+        'satoshi-light': ['satoshi-light'],
+        'satoshi-italic': ['satoshi-italic'],
       }
     },
   },

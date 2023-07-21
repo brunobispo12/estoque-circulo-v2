@@ -1,9 +1,13 @@
 import { PropsChildren } from './utils/types/genericTypes'
+import Header from './Layout/Header'
 
-function layout({ children}: PropsChildren) {
+function Layout({ children }: PropsChildren) {
   return (
-    <div>layout</div>
+    <>
+      <Header />
+      {children}
+    </>
   )
 }
 
-export default layout
+export default Layout
