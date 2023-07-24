@@ -12,13 +12,29 @@ const routes = [
         element: <PrivateRoutes />,
         children: [
             {
-                path: '/home',
+                path: '/',
                 element: <Layout><Home /></Layout>
             },
+        ],
+    },
+    {
+        path: '/items',
+        element: <PrivateRoutes />,
+        children: [
             {
                 path: '/items',
                 element: <Layout><Items /></Layout>
-            }
+            },
+        ]
+    },
+    {
+        path: '/home',
+        element: <PrivateRoutes />,
+        children: [
+            {
+                path: '/home',
+                element: <Layout><Home /></Layout>
+            },
         ],
     },
     {
@@ -27,7 +43,7 @@ const routes = [
     },
     {
         path: '*',
-        element: <NotFound/>
+        element: <NotFound />
     }
 ]
 

@@ -1,21 +1,18 @@
-import { useContext } from 'react'
 import { Outlet, useLocation, Navigate } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext'
-
+import useSessionInfos from '../../hooks/useSessionInfos';
 
 const PrivateRoutes = () => {
     const location = useLocation();
-    const { sessionContextValue } = useContext(AuthContext)
+    const { userIsAuth } = useSessionInfos()
 
-    console.log(sessionContextValue)
+    const cachedData = localStorage.getItem('sessionData')
+    const sessionIsAuth = cachedData ? JSON.parse(cachedData) : userIsAuth
 
-    if (sessionContextValue.isAuth === undefined) {
-        return null; 
-    }
+    return sessionIsAuth ? (
+        <Outlet />
+    ) : (
+        <Navigate to="/login" replace state={{ from: location }} />
+    );
+};
 
-    return sessionContextValue.isAuth
-        ? <Outlet />
-        : <Navigate to="/login" replace state={{ from: location }} />;
-}
-
-export default PrivateRoutes
+export default PrivateRoutes;

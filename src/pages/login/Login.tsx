@@ -1,5 +1,5 @@
 import { CirculoEscritaLogo } from "../../utils/constants/imagesPath";
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { ISessionContext } from '../../utils/types/interfaces/ISessionContext'
 import { useQuery } from 'react-query'
@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form'
 
 
 function Login() {
-    const { setSessionInfos } = useContext(AuthContext)
+    const { setSessionInfos, sessionContextValue } = useContext(AuthContext)
     const [user, setUser] = useState(null)
     const [error, setError] = useState('')
     const [shouldRefetch, setShouldRefetch] = useState(false)
@@ -21,12 +21,13 @@ function Login() {
     const { register, handleSubmit } = useForm()
 
     const { isLoading, isError, refetch } = useQuery<ISessionContext | any>(key, async () => {
-        const response = await axios.post(`http://localhost:3001/api/auth/login`, user) // the first request to api isnt getting the user for search in database
+        const response = await axios.post(`http://localhost:3001/api/auth/login`, user)
         return response.data;
     }, {
         enabled: false,
         onSuccess: (data) => {
             setSessionInfos(data)
+            localStorage.setItem('sessionData', JSON.stringify(data))
             if (data.isAuth) {
                 navigate('/home')
             }
@@ -54,12 +55,12 @@ function Login() {
     return (
         <div className="col-center justify-center min-h-screen gap-8 color-gradient-header">
             <img src={CirculoEscritaLogo} alt="" className="w-56 lg:w-64" />
-            <div className="col-center gap-8 p-5 w-[27rem]  h-[25rem] bg-white rounded-lg border border-princeton">
+            <div className="col-center gap-8 p-5 w-80 min-h-[21.5rem] bg-white rounded-lg border border-raisin">
                 <div className="flex flex-col gap-[2px]">
-                    <h1 className="text-2xl text-center font-satoshi-bold">Bem-vindo</h1>
-                    <p>Faça login para continuar</p>
+                    <h1 className="text-xl text-center font-satoshi-bold">Bem-vindo</h1>
+                    <p className="text-lg">Faça login para continuar</p>
                 </div>
-                <form className="col-center justify-center w-3/4" onSubmit={handleSubmit(handleLogin)}>
+                <form className="col-center justify-center w-3/4 text-base" onSubmit={handleSubmit(handleLogin)}>
                     <label className="flex flex-col gap-1 w-full">
                         <p>Usuário:</p>
                         <input type="text" placeholder="Digite seu usuário" className="border border-gray-500 px-1 w-full rounded-md outline-none" {...register('user')} />
@@ -72,7 +73,7 @@ function Login() {
                         <button className="border border-gray-500 w-full rounded-md py[2px] outline-none" type="submit">Entrar</button>
                     </label>
                 </form>
-                {isLoading && <LoadingDiv/>}
+                {isLoading && <LoadingDiv />}
                 {isError && <ErrorDiv errorMessage={error} />}
             </div>
         </div>
