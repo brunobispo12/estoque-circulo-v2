@@ -9,6 +9,7 @@ import handleError from '../../utils/functions/handleErrors'
 import ErrorDiv from '../../components/ErrorDiv'
 import LoadingDiv from "../../components/LoadingDiv";
 import { useForm } from 'react-hook-form'
+import { motion } from 'framer-motion'
 
 
 function Login() {
@@ -63,20 +64,25 @@ function Login() {
                 <form className="col-center justify-center w-3/4 text-base" onSubmit={handleSubmit(handleLogin)}>
                     <label className="flex flex-col gap-1 w-full">
                         <p>Usuário:</p>
-                        <input type="text" placeholder="Digite seu usuário" className="border border-gray-500 px-1 w-full rounded-md outline-none" {...register('user')} />
+                        <motion.input whileFocus={{ borderColor: '#FF9400' }} type="text" placeholder="Digite seu usuário" className="border border-gray-500 px-1 w-full rounded-md outline-none" {...register('user')} />
                     </label>
                     <label className="flex flex-col mt-3 gap-1 w-full">
                         <p>Senha:</p>
-                        <input type="password" placeholder="Digite sua senha" className="border border-gray-500 px-1 rounded-md outline-none" {...register('password')} />
+                        <motion.input whileFocus={{ borderColor: '#FF9400' }} type="password" placeholder="Digite sua senha" className="border border-gray-500 px-1 rounded-md outline-none" {...register('password')} />
                     </label>
                     <label className="flex justify-center w-full mt-12">
-                        <button className="border border-gray-500 w-full rounded-md py[2px] outline-none" type="submit">Entrar</button>
+                        <motion.button
+                            className="border border-gray-500 w-full rounded-md py[2px] outline-none" type="submit"
+                            whileHover={{ backgroundColor: 'rgba(245, 129, 51, 0.75)', }}
+                        >
+                            Entrar
+                        </motion.button>
                     </label>
                 </form>
                 {isLoading && <LoadingDiv />}
                 {isError && <ErrorDiv errorMessage={error} />}
             </div>
-        </div>
+        </div >
     )
 }
 
