@@ -64,11 +64,11 @@ function Login() {
                 <form className="col-center justify-center w-3/4 text-base" onSubmit={handleSubmit(handleLogin)}>
                     <label className="flex flex-col gap-1 w-full">
                         <p>Usuário:</p>
-                        <motion.input whileFocus={{ borderColor: '#FF9400' }} type="text" placeholder="Digite seu usuário" className="border border-gray-500 px-1 w-full rounded-md outline-none" {...register('user')} />
+                        <motion.input whileFocus={{ borderColor: '#FF9400' }} type="text" placeholder="Digite seu usuário" className="border border-gray-500 px-1 w-full rounded-md outline-princeton" {...register('user')} />
                     </label>
                     <label className="flex flex-col mt-3 gap-1 w-full">
                         <p>Senha:</p>
-                        <motion.input whileFocus={{ borderColor: '#FF9400' }} type="password" placeholder="Digite sua senha" className="border border-gray-500 px-1 rounded-md outline-none" {...register('password')} />
+                        <motion.input whileFocus={{ borderColor: '#FF9400' }} type="password" placeholder="Digite sua senha" className="border border-gray-500 px-1 rounded-md outline-princeton" {...register('password')} />
                     </label>
                     <label className="flex justify-center w-full mt-12">
                         <motion.button

@@ -12,7 +12,7 @@ function TableList({ items }: Props) {
     }
 
     return (
-        <div className='space-y-10 flex justify-center w-full'>
+        <div className='flex justify-center w-full'>
             <div></div>
             <table>
                 <thead>
