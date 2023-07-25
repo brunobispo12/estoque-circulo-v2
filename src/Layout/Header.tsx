@@ -11,13 +11,13 @@ function Header() {
   const { userInfos } = useSessionInfos()
 
   return (
-    <header className="px-3 py-2 shadow-lg h-14 flex items-center justify-between bg-raisin text-white">
+    <header className="px-3 py-2 shadow-lg h-16 flex items-center justify-between bg-raisin text-white">
       <div className="flex items-center space-x-10">
         <div>
           <img src={CirculoIcon} alt="" className="h-10" />
         </div>
         <div>
-          <ul className="flex items-center space-x-4 text-lg font-satoshi-bold">
+          <ul className="flex items-center space-x-4 text-xl font-satoshi-bold">
             <li>
               <Link to="/home">Home</Link>
             </li>
@@ -27,7 +27,7 @@ function Header() {
           </ul>
         </div>
       </div>
-      <div className="self-start text-sm px-2">
+      <div className="self-start text-base px-2">
         <button onClick={() => setmodalIsOpen((prevState) => !prevState)} className="flex gap-1 items-center ">
           {userInfos?.name}
           {modalIsOpen ? <BiUpArrowAlt /> : <BiDownArrowAlt />}

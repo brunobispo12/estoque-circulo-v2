@@ -56,7 +56,7 @@ function Login() {
     return (
         <div className="col-center justify-center min-h-screen gap-8 color-gradient-header">
             <img src={CirculoEscritaLogo} alt="" className="w-56 lg:w-64" />
-            <div className="col-center gap-8 p-5 w-80 min-h-[21.5rem] bg-white rounded-lg border border-raisin">
+            <div className="col-center gap-8 p-5 w-80 min-h-[22.5rem] bg-white rounded-lg border border-raisin">
                 <div className="flex flex-col gap-[2px]">
                     <h1 className="text-xl text-center font-satoshi-bold">Bem-vindo</h1>
                     <p className="text-lg">Faça login para continuar</p>

@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import axios from 'axios'
-import { motion } from 'framer-motion'
+import TableList from './components/TableList'
 
 const items = [
   {
@@ -94,41 +94,13 @@ const items = [
   }
 ]
 
-function test() {
-  console.log('test test')
-}
-
 function Items() {
   return (
     <div className='p-5'>
       <span>
         <h1 className='text-xl font-satoshi-bold'>Relatório de itens</h1>
+        <TableList items={items}/>
       </span>
-      <div className='space-y-10 flex justify-center w-full bg-red-6000'>
-        <div></div>
-        <table>
-          <thead>
-            <tr>
-              <th className='w-52 text-start border-b-2 border-black'>Marca</th>
-              <th className='w-52 text-start border-b-2 border-black'>Nome</th>
-              <th className='w-32 text-start border-b-2 border-black'>Disponível</th>
-              <th className='w-8 border-b-2 border-black'></th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => {
-              return (
-                <tr key={item._id}>
-                  <td className='p-1'>{item.brand}</td>
-                  <td className='p-1'>{item.name ? item.name : 'Sem nome cadastrado'}</td>
-                  <td className='p-1'>{item.available ? 'Sim' : 'Não'}</td>
-                  <td className='flex justify-center p-2'><motion.button onClick={test} className='bg-princeton p-[2px] text-sm rounded'>Editar</motion.button></td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </div>
     </div>
   )
 }
