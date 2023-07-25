@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsFillGridFill, BsList } from 'react-icons/bs'
+import { BsFillGridFill, BsList, BsSearch } from 'react-icons/bs'
 import { LuTable2 } from 'react-icons/lu'
 
 function SearchBar() {
@@ -13,12 +13,12 @@ function SearchBar() {
         <div className='text-black'>
           <select className='border border-princeton rounded w-20'>
             <option value="name">Nome</option>
-            <option value="name">Nome</option>
-            <option value="name">Nome</option>
-            <option value="name">Nome</option>
-            <option value="name">Nome</option>
+            <option value="name">Disponível</option>
+            <option value="name">Tipo</option>
+            <option value="name">Local</option>
           </select>
         </div>
+        <button><BsSearch /></button>
       </div>
       <div className='flex gap-5 items-center'>
         <button>{<BsFillGridFill size={18} />}</button>

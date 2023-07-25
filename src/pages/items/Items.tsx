@@ -1,5 +1,5 @@
 import SearchBar from './view/SearchBar'
-import ItemsViewMode from './view/itemsViewMode'
+import ItemsViewMode from './view/ItemsViewMode'
 
 function Items() {
   return (
