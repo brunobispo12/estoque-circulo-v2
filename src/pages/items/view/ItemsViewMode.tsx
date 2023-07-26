@@ -1,11 +1,13 @@
-import TableList from "../components/TableList"
+import TableList from "./TableList"
+import GridList from "./GridList"
+import useViewMode from "../../../hooks/useViewMode"
 
 const items = [
     {
         "location": {
-            "sector": "IT Department",
+            "sector": "200",
             "borrower": "John Doe",
-            "borrowDate": "2023-07-20T00:00:00.000Z"
+            "borrowDate": "2023-07-20"
         },
         "_id": "64bd818549f2baf138c427d7",
         "brand": "Apple",
@@ -21,9 +23,9 @@ const items = [
     },
     {
         "location": {
-            "sector": "Sales Department",
+            "sector": "Comercial",
             "borrower": "Jane Smith",
-            "borrowDate": "2023-07-15T00:00:00.000Z"
+            "borrowDate": "2023-07-15"
         },
         "_id": "64bd819d49f2baf138c427d9",
         "brand": "Samsung",
@@ -39,9 +41,9 @@ const items = [
     },
     {
         "location": {
-            "sector": "Office Area",
+            "sector": "Administrativo",
             "borrower": "Bob Johnson",
-            "borrowDate": "2023-07-18T00:00:00.000Z"
+            "borrowDate": "2023-07-18"
         },
         "_id": "64bd81a349f2baf138c427db",
         "brand": "HP",
@@ -56,9 +58,9 @@ const items = [
     },
     {
         "location": {
-            "sector": "Conference Room",
+            "sector": "SAME",
             "borrower": "Sarah Williams",
-            "borrowDate": "2023-07-12T00:00:00.000Z"
+            "borrowDate": "2023-07-12"
         },
         "_id": "64bd81a949f2baf138c427dd",
         "brand": "Sony",
@@ -74,9 +76,9 @@ const items = [
     },
     {
         "location": {
-            "sector": "Engineering Department",
+            "sector": "Manutenção",
             "borrower": "Michael Brown",
-            "borrowDate": "2023-07-19T00:00:00.000Z"
+            "borrowDate": "2023-07-19"
         },
         "_id": "64bd81ae49f2baf138c427df",
         "brand": "Dell",
@@ -93,9 +95,12 @@ const items = [
 ]
 
 function ItemsViewMode() {
+
+    const { currentViewMode } = useViewMode()
+
     return (
         <>
-            <TableList items={items}/>
+            {currentViewMode === 'grid' ? <GridList items={items} /> : <TableList items={items} />}
         </>
     )
 }
