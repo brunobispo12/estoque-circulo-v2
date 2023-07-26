@@ -13,9 +13,9 @@ function SearchBar() {
         <div className='text-black'>
           <select className='border border-princeton rounded w-20'>
             <option value="name">Nome</option>
-            <option value="name">Disponível</option>
-            <option value="name">Tipo</option>
-            <option value="name">Local</option>
+            <option value="avaliable">Disponível</option>
+            <option value="type">Tipo</option>
+            <option value="location">Local</option>
           </select>
         </div>
         <button><BsSearch /></button>
