@@ -1,9 +1,11 @@
 import { BsFillGridFill, BsList, BsSearch } from 'react-icons/bs'
 import useViewMode from '../../../hooks/useViewMode'
-import { color, motion } from 'framer-motion'
-
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import Modal from '../../../components/Modal'
+import NewItemModal from '../modals/NewItem'
 function SearchBar() {
-
+  const [newItemModal, setNewItemModal] = useState(false)
   const { changeViewMode } = useViewMode()
 
   return (
@@ -28,9 +30,10 @@ function SearchBar() {
           <motion.button onClick={() => changeViewMode('table')} whileHover={{ scale: 1.1 }}>{<BsList size={23} />}</motion.button>
         </div>
       </div>
-      <motion.button className='border-2 border-raisin rounded py-1 px-2 bg-princeton' whileHover={{ scale: 1.02 }}>
+      <motion.button onClick={() => { setNewItemModal((prevState) => !prevState) }} className='border-2 border-raisin rounded py-1 px-2 bg-princeton' whileHover={{ scale: 1.02 }}>
         Novo Item
       </motion.button>
+      {newItemModal && <Modal setModal={setNewItemModal} modalTitle='Novo Item'><NewItemModal /></Modal>}
     </div>
   )
 }
