@@ -27,7 +27,7 @@ function ItemTable({ items, setModal,  }: Props) {
                             <td className='p-1'>{item.name ? item.name : 'Sem nome cadastrado'}</td>
                             <td className='p-1'>{item.available ? 'Sim' : 'Não'}</td>
                             <td className='flex justify-center p-2'>
-                                <motion.button onClick={() => setModal(true)} className='bg-princeton p-[2px] text-sm rounded'>Editar</motion.button>
+                                <motion.button whileHover={{ scale: 1.05}} onClick={() => setModal(true)} className='bg-princeton p-[2px] text-sm rounded border-raisin border-2'>Editar</motion.button>
                             </td>
                         </tr>
                     )

@@ -1,7 +1,5 @@
 import SearchBar from './view/SearchBar'
 import ItemsViewMode from './view/ItemsViewMode'
-import Modal from '../../components/Modal'
-import useModal from '../../hooks/useModal'
 
 function Items() {
 
@@ -16,7 +14,6 @@ function Items() {
           <ItemsViewMode />
         </div>
       </div>
-      
     </div>
   )
 }

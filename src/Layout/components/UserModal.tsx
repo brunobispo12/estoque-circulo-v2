@@ -6,7 +6,7 @@ function UserModal() {
   const { LogOff } = useLogOff()
 
   return (
-    <motion.div className='bg-princeton p-1 rounded-sm'
+    <motion.div className='bg-princeton p-1 rounded-sm '
       initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.3, ease: easeInOut }}>
       <ul>
         <li>Detalhes</li>
