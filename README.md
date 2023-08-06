@@ -1,29 +1,3 @@
-# template-vite-react-ts-tailwind-v3
+Front-end desenvolvido para controle do estoque de periféricos no Círculo Saude.
 
-- **template of:** vite + react + typescript
-- **tailwindcss:** v3.x
-
-## Started
-```bash
-yarn
-# or `npm install`
-```
-
----
-## Develop
-```bash
-yarn dev
-# or `npm run dev`
-```
-
----
-## Build
-```bash
-yarn build
-# or `npm run build`
-```
-
----
-<p align="center">
-<img src="./powered-by-vitawind-bright.png">
-</p>
+Projeto React.js criado com Vite ultilizando um template com TypeScript e Tailwind.
