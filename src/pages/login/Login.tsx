@@ -13,7 +13,7 @@ import { motion } from 'framer-motion'
 
 
 function Login() {
-    const { setSessionInfos, sessionContextValue } = useContext(AuthContext)
+    const { setSessionInfos } = useContext(AuthContext)
     const [user, setUser] = useState(null)
     const [error, setError] = useState('')
     const [shouldRefetch, setShouldRefetch] = useState(false)

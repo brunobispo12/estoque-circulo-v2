@@ -2,14 +2,14 @@ export type Item = {
     _id: any,
     brand: String,
     condition: String,
-    name?: String;
+    name?: String,
     type: String,
-    available: Boolean,
-    item_id: Number,
+    available: String,
+    item_id: String,
     desc?: String,
     location?: {
-        sector?: String;
-        borrower?: String;
-        borrowDate?: String;
+        sector?: String,
+        borrower?: String,
+        borrowDate?: String,
     }
 }

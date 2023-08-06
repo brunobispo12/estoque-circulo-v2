@@ -1,6 +1,6 @@
 import { BsFillGridFill, BsList, BsSearch } from 'react-icons/bs'
 import useViewMode from '../../../hooks/useViewMode'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import Modal from '../../../components/Modal'
 import NewItemModal from '../modals/NewItem'
@@ -33,7 +33,9 @@ function SearchBar() {
       <motion.button onClick={() => { setNewItemModal((prevState) => !prevState) }} className='border-2 border-raisin rounded py-1 px-2 bg-princeton' whileHover={{ scale: 1.02 }}>
         Novo Item
       </motion.button>
-      {newItemModal && <Modal setModal={setNewItemModal} modalTitle='Novo Item'><NewItemModal /></Modal>}
+      <AnimatePresence>
+        {newItemModal && <Modal setModal={setNewItemModal} modalTitle='Novo Item'><NewItemModal /></Modal>}
+      </AnimatePresence>
     </div>
   )
 }

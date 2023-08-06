@@ -9,13 +9,10 @@ type Props = {
 
 function TableList({ items }: Props) {
 
-    const [updateItemModal, setUpdateItemModal] = useState(false)
-
     return (
         <div className='flex justify-center w-full'>
             <div></div>
-            <ItemTable items={items} setModal={setUpdateItemModal}></ItemTable>
-            {updateItemModal && <Modal setModal={setUpdateItemModal} modalTitle='Atualizar Item'><div>dajsd</div></Modal>}
+            <ItemTable items={items}></ItemTable>
         </div>
     )
 }
