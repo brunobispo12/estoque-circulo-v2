@@ -21,9 +21,12 @@ function Login() {
     const key = ['auth']
     const { register, handleSubmit } = useForm()
 
+    axios.defaults.withCredentials = true
+
     const { isLoading, isError, refetch } = useQuery<ISessionContext | any>(key, async () => {
-        const response = await axios.post(`http://localhost:3001/api/auth/login`, user)
-        return response.data;
+        const userResponse = await axios.post('http://localhost:8080/users/login', user)
+        const response = await axios.get('http://localhost:8080/users/auth')
+        return response.data
     }, {
         enabled: false,
         onSuccess: (data) => {
