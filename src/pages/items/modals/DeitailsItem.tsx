@@ -1,21 +1,29 @@
 import { motion } from "framer-motion"
 import { DetailsProps } from "../../../utils/types/genericTypes"
 import { useForm } from "react-hook-form"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useQueryClient, useQuery } from "react-query"
+import axios from "axios"
+import handleError from "../../../utils/functions/handleErrors"
 
-function DeitailsItem({ item }: DetailsProps) {
+function DeitailsItem({ item, setModal }: DetailsProps) {
 
     const { register, handleSubmit } = useForm()
     const [editIsOn, setEditIsOn] = useState(true)
+    const [itemUpdate, setItemUpdate] = useState()
+    const QueryClient = useQueryClient()
+    const [error, setError] = useState('')
+    const [shouldRefetch, setShouldRefetch] = useState(false)
+    const [shouldrefetchDelete, setShouldRefetchDelete] = useState(false)
 
     function setEditedItem(data: any) {
         data = {
-            brand: data.brand,
-            condition: data.condition,
-            name: data.name,
-            type: data.type,
-            available: data.available,
-            item_id: data.item_id,
+            brand: data.brand ? data.brand : item.brand,
+            condition: data.condition ? data.condition : item.condition,
+            name: data.name ? data.name : item.name,
+            type: data.type ? data.type : item.type,
+            available: data.available ? data.available : item.available,
+            item_id: data.item_id ? data.item_id : item.item_id,
             desc: data.desc,
             location: {
                 sector: data?.sector,
@@ -23,8 +31,52 @@ function DeitailsItem({ item }: DetailsProps) {
                 borrowDate: data.borrowDate,
             }
         }
-        console.log(data)
+        setItemUpdate(data)
+        setShouldRefetch(true)
     }
+
+    const key = ['updateItem']
+
+    const { isLoading, refetch } = useQuery<any>(key, async () => {
+        const response = await axios.patch(`http://localhost:8080/items/update/${item._id}`, itemUpdate)
+        return response.data
+    }, {
+        enabled: false,
+        onSuccess: () => {
+            QueryClient.invalidateQueries('items')
+            setModal(false)
+        },
+        onError: (error: any) => {
+            const errorStatus: number = error.response.status
+            const errorMessage = handleError(errorStatus)
+            setError(errorMessage)
+        },
+        retry: 1
+    })
+
+    const { isLoading: isLoadingDelete, refetch: refetchDelete } = useQuery<any>(key, async () => {
+        const response = await axios.delete(`http://localhost:8080/items/delete/${item._id}`)
+        return response.data
+    }, {
+        enabled: false,
+        onSuccess: () => {
+            QueryClient.invalidateQueries('items')
+            setModal(false)
+        }
+    })
+
+    useEffect(() => {
+        if (shouldRefetch) {
+            refetch()
+            setShouldRefetch(false)
+        }
+    }, [shouldRefetch, itemUpdate])
+
+    function handleDelete() {
+        refetchDelete()
+        setShouldRefetchDelete(false)
+    }
+
 
     return (
         <>
@@ -113,12 +165,21 @@ function DeitailsItem({ item }: DetailsProps) {
                         ></motion.textarea>
                     </label>
                     <div className='flex justify-end'>
-                        {editIsOn ? <motion.button onClick={() => setEditIsOn((prevState) => { return !prevState })} whileHover={{ scale: 1.03 }} className="bg-princeton px-2 w-20 h-8 rounded border-2 border-raisin">
-                            Editar
-                        </motion.button> :
-                            <motion.button whileHover={{ scale: 1.03 }} className="bg-princeton px-2 w-20 h-8 rounded border-2 border-raisin" type="submit">
-                                Enviar
-                            </motion.button>}
+                        {editIsOn ?
+                            <motion.button onClick={() => setEditIsOn((prevState) => { return !prevState })} whileHover={{ scale: 1.03 }} className="bg-princeton px-2 w-20 h-8 rounded border-2 border-raisin">
+                                Editar
+                            </motion.button> :
+                            <div className="space-x-4">
+                                <motion.button whileHover={{ scale: 1.03 }}
+                                    className="bg-princeton px-2 w-20 h-8 rounded border-2 border-raisin"
+                                    onClick={handleDelete}
+                                >
+                                    Excluir
+                                </motion.button>
+                                <motion.button whileHover={{ scale: 1.03 }} className="bg-princeton px-2 w-20 h-8 rounded border-2 border-raisin" type="submit">
+                                    Enviar
+                                </motion.button>
+                            </div>}
                     </div>
                 </div>
             </form>

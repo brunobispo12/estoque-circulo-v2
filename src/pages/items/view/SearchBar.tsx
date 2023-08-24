@@ -1,12 +1,9 @@
-import { BsFillGridFill, BsList, BsSearch } from 'react-icons/bs'
-import useViewMode from '../../../hooks/useViewMode'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import Modal from '../../../components/Modal'
 import NewItemModal from '../modals/NewItem'
 function SearchBar() {
   const [newItemModal, setNewItemModal] = useState(false)
-  const { changeViewMode } = useViewMode()
 
   return (
     <div className='flex justify-around items-center gap-8'>
@@ -25,16 +22,12 @@ function SearchBar() {
             </select>
           </div>
         </div>
-        <div className='flex gap-5 items-center'>
-          <motion.button onClick={() => changeViewMode('grid')} whileHover={{ scale: 1.1 }} >{<BsFillGridFill size={18} />}</motion.button>
-          <motion.button onClick={() => changeViewMode('table')} whileHover={{ scale: 1.1 }}>{<BsList size={23} />}</motion.button>
-        </div>
       </div>
       <motion.button onClick={() => { setNewItemModal((prevState) => !prevState) }} className='border-2 border-raisin rounded py-1 px-2 bg-princeton' whileHover={{ scale: 1.02 }}>
         Novo Item
       </motion.button>
       <AnimatePresence>
-        {newItemModal && <Modal setModal={setNewItemModal} modalTitle='Novo Item'><NewItemModal /></Modal>}
+        {newItemModal && <Modal setModal={setNewItemModal} modalTitle='Novo Item'><NewItemModal setModal={setNewItemModal} /></Modal>}
       </AnimatePresence>
     </div>
   )

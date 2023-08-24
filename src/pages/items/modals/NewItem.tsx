@@ -5,7 +5,11 @@ import { useForm } from "react-hook-form"
 import { useQueryClient, useQuery } from "react-query"
 import handleError from "../../../utils/functions/handleErrors"
 
-function NewItemModal() {
+type Props = {
+  setModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function NewItemModal({ setModal }: Props) {
 
   const { register, handleSubmit } = useForm()
   const [item, setItem] = useState()
@@ -16,12 +20,13 @@ function NewItemModal() {
 
 
   const { isLoading, refetch } = useQuery<any>(key, async () => {
-    const response = await axios.post(`http://localhost:3001/api/items`, item)
+    const response = await axios.post(`http://localhost:8080/items/register`, item)
     return response.data;
   }, {
     enabled: false,
     onSuccess: () => {
       QueryClient.invalidateQueries('items')
+      setModal(false)
     },
     onError: (error: any) => {
       const errorStatus: number = error.response.status

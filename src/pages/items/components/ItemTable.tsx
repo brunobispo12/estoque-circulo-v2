@@ -49,7 +49,7 @@ function ItemTable({ items }: Props) {
             </table>
             <AnimatePresence>
                 {updateItemModal &&
-                    <Modal setModal={setUpdateItemModal} modalTitle="Detalhes do Item"><DeitailsItem item={selectedItem} /></Modal>}
+                    <Modal setModal={setUpdateItemModal} modalTitle="Detalhes do Item"><DeitailsItem item={selectedItem} setModal={setUpdateItemModal}/></Modal>}
             </AnimatePresence>
 
         </>

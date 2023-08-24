@@ -1,5 +1,4 @@
 import TableList from "./TableList"
-import GridList from "./GridList"
 import useViewMode from "../../../hooks/useViewMode"
 import { useQuery } from "react-query"
 import axios from "axios"
@@ -14,7 +13,7 @@ function ItemsViewMode() {
     const [error, setError] = useState('')
 
     const { data, isError } = useQuery(key, async () => {
-        const response = await axios.get("http://localhost:3001/api/items")
+        const response = await axios.get("http://localhost:8080/items/all")
         return response.data
     },
         {
@@ -28,8 +27,7 @@ function ItemsViewMode() {
 
     return (
         <>
-            {currentViewMode === 'grid' ? <GridList items={data} /> : <TableList items={data} />}
-            {isError && `${error}`}
+            <TableList items={data} />
         </>
     )
 }

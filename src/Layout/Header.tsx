@@ -17,7 +17,7 @@ function Header() {
           <img src={CirculoIcon} alt="" className="h-10" />
         </div>
         <div>
-          <ul className="flex items-center space-x-4 text-xl font-satoshi-bold">
+          <ul className="flex items-center space-x-6 text-xl font-satoshi-bold">
             <li>
               <Link to="/home">Home</Link>
             </li>

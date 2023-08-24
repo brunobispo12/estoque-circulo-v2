@@ -13,4 +13,5 @@ export type ModalType = {
 
 export type DetailsProps = {
     item: Item
+    setModal: React.Dispatch<React.SetStateAction<boolean>>
 }
